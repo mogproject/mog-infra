@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+
+$script = <<SCRIPT
+yum -y --nogpgcheck install dstat telnet
+echo 'alias dstat="sudo dstat -tlcdnmgy --top-cpu --top-io --top-bio --top-mem"' >> /home/vagrant/.bashrc
+SCRIPT
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "opscode-centos65"
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.name = "docker-host1"
+    vb.customize ["modifyvm", :id, "--memory", 1024]
+  end
+
+  config.vm.provision :shell, :inline => $script
+
+  config.vm.network :private_network, ip: "192.168.33.99"
+
+  config.vm.provision :docker do |d|
+    d.pull_images "centos:6.4"
+  end
+end
