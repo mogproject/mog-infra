@@ -6,7 +6,7 @@ Vagrantfile for Docker host
 Change settings if you need. (e.g. IP Address)
 
 ```
-$ vi ./Dockerfile
+$ vi ./Vagrantfile
 ```
 
 Build up the virtual machine.
