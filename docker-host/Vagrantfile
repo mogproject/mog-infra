@@ -3,10 +3,15 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+DOCKER_URL = "192.168.33.99"
+DOCKER_PORT = 5422
 
 $script = <<SCRIPT
-yum -y --nogpgcheck install dstat telnet
-echo 'alias dstat="sudo dstat -tlcdnmgy --top-cpu --top-io --top-bio --top-mem"' >> /home/vagrant/.bashrc
+  yum -y --nogpgcheck install dstat telnet
+  echo 'alias dstat="sudo dstat -tlcdnmgy --top-cpu --top-io --top-bio --top-mem"' >> /home/vagrant/.bashrc
+  sed -i -e 's/other_args=/other_args=\"-H 0.0.0.0:#{DOCKER_PORT}\"/g' /etc/sysconfig/docker
+  service docker stop
+  service docker start
 SCRIPT
 
 
@@ -16,15 +21,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "docker-host1"
-    vb.customize ["modifyvm", :id, "--memory", 4096]
+    vb.customize ["modifyvm", :id, "--memory", 3072]
     vb.customize ["modifyvm", :id, "--cpus", 4]
   end
 
-  config.vm.provision :shell, :inline => $script
-
-  config.vm.network :private_network, ip: "192.168.33.99"
+  config.vm.network :private_network, ip: DOCKER_URL
 
   config.vm.provision :docker do |d|
     d.pull_images "centos:6.4"
   end
+
+  config.vm.provision :shell, :inline => $script
 end
