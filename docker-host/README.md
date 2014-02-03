@@ -9,6 +9,9 @@ Change settings if you need. (e.g. IP Address)
 $ vi ./Vagrantfile
 ```
 
+This file is forked from <a href="http://fnichol.github.io/dvm/">dvm by fnichol</a>.
+
+
 Build up the virtual machine.
 
 ```
@@ -32,7 +35,7 @@ $ brew install docker
 Set environment variable.
 
 ```
-$ export DOCKER_HOST="192.168.33.99:5422"
+$ export DOCKER_HOST="192.168.42.43:4243"
 ```
 
 Now you can run docker command in OS X.
