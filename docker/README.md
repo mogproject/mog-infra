@@ -11,7 +11,7 @@ Run this handy script to setup [boot2docker](https://github.com/boot2docker/boot
 
 ```
 $ cat ./profile    # customize profile if you need
-$ ./setup_mac.sh
+$ ./setup_mac.sh    # required to input your password for sudo in the shell
 ```
 
 Then set the environment variable like this.
@@ -29,20 +29,20 @@ $ alias b2d=boot2docker
 
 ### Operations
 
-|purpose             |command               |notes|
-||
+| Purpose | Command | Notes |
+| --- | --- | --- |
 |Log in to the VM|```$ boot2docker ssh```|password: ```tcuser```|
-|Check Docker version|```$ docker version```|
-|Print running containers|```$ docker ps```|
-|Print all containers|```$ docker ps -a```|
-|Print images|```$ docker images```|
+|Check Docker version|```$ docker version```||
+|Print running containers|```$ docker ps```||
+|Print all containers|```$ docker ps -a```||
+|Print images|```$ docker images```||
 
 ### Example
 
 #### Running [shogi-server](https://index.docker.io/u/mogproject/shogi-server/)
 
 
-**NOTE: The binding port should be in the range 49000-49900**
+**NOTE: The binding port should be in the range of 49000 to 49900**
 
 ```
 $ docker pull mogproject/shogi-server
