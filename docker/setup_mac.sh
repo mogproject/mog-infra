@@ -48,8 +48,8 @@ setup() {
   for i in {49000..49900}; do
     if (( (i - 49000) % 90 == 0)); then
       printf "$(( (i - 49000) / 9))%%"
-    else
-      (( (i - 49000) % 15 == 0)) && printf "."
+    elif (( (i - 49000) % 15 == 0)); then
+      printf "."
     fi
     VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$i,tcp,,$i,,$i" || return 1
     VBoxManage modifyvm "boot2docker-vm" --natpf1 "udp-port$i,udp,,$i,,$i" || return 1
