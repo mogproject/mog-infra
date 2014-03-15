@@ -13,3 +13,13 @@ mog DevOps Repository
 
   https://www.virtualbox.org/wiki/Downloads
 
+
+## Directories
+
+* docker
+
+  Guide for using Docker
+
+* docker-host [deprecated]
+
+  Vagrant files for making Docker host
