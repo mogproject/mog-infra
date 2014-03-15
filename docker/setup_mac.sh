@@ -8,7 +8,7 @@ B2D_CFG_DIR=$HOME/.boot2docker
 
 
 init() {
-  # This script can work in Mac OS X only
+  # This script works in Mac OS X only
   [[ $(uname -s) == "Darwin" ]] || return 1
 }
 
