@@ -14,7 +14,7 @@ $ cat ./profile    # customize profile if you need
 $ ./setup_mac.sh    # required to input your password for sudo in the shell
 ```
 
-Then set the environment variable like this.
+Then set the environment variable like this. (Set in .bashrc / .zshrc)
 
 ```
 $ export DOCKER_HOST=tcp://127.0.0.1:4243
