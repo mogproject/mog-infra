@@ -4,6 +4,7 @@
 #
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
+B2D_SRC_DIR=$SCRIPT_DIR/boot2docker
 B2D_CFG_DIR=$HOME/.boot2docker
 
 
@@ -38,7 +39,7 @@ setup() {
   brew install docker boot2docker || return 1
 
   mkdir -p $B2D_CFG_DIR || return 1
-  cp $SCRIPT_DIR/profile $B2D_CFG_DIR/ || return 1
+  cp $B2D_SRC_DIR/profile $B2D_CFG_DIR/ || return 1
 
   # Create docker host VM
   boot2docker init || return 1
