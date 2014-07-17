@@ -27,6 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.extra_vars = {
         newrelic_license_key: ENV['NEWRELIC_LICENSE_KEY']
       }
+      ansible.host_key_checking = false
       ansible.verbose = "v"
     end
   end

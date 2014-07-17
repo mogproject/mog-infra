@@ -14,8 +14,15 @@
 - name: install newrelic-sysmond
   yum: name=newrelic-sysmond state=present
 
-- name: set lisence key
+- name: check if license key is set
+  shell: egrep '^license_key=.{40}$' /etc/newrelic/nrsysmond.cfg >/dev/null
+  register: result
+  ignore_errors: True
+  changed_when: False
+
+- name: set license key
   shell: nrsysmond-config --set license_key={{ newrelic_license_key }}
+  when: result|failed
 
 - name: start newrelic-sysmond service
   service: name=newrelic-sysmond state=started enabled=yes
