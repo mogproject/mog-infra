@@ -23,6 +23,9 @@ AWS_ACCESS_KEY_ID="your access key id"
 AWS_SECRET_ACCESS_KEY="your secret"
 AWS_KEYPAIR_NAME="vagrant"
 AWS_SECURITY_GROUP="vagrant"
+
+# new relic
+NEWRELIC_LICENSE_KEY="your license key"
 ```
 
 
