@@ -1,0 +1,22 @@
+---
+- name: check if repository is installed
+  shell: rpm -q newrelic-repo
+  register: result
+  ignore_errors: True
+  changed_when: False
+
+- name: install repository
+  yum: name={{ item }} state=present
+  with_items:
+    - http://download.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
+  when: result|failed
+
+- name: install newrelic-sysmond
+  yum: name=newrelic-sysmond state=present
+
+- name: set lisence key
+  shell: nrsysmond-config --set license_key={{ newrelic_license_key }}
+
+- name: start newrelic-sysmond service
+  service: name=newrelic-sysmond state=started enabled=yes
+
